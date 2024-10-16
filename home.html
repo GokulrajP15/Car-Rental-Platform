@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-4xl font-bold mb-8">Welcome to Hertz Car Rental</h1>
+<p class="text-xl mb-4">Book your perfect rental car today!</p>
+<p class="text-xl mb-4">Kindly login to view available cars.</p>
+<a href="{% url 'car_list' %}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Available Cars</a>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-8">Admin Dashboard</h1>
+<div class="mb-8">
+    <h2 class="text-2xl font-bold mb-4">Car Inventory</h2>
+    <a href="{% url 'add_car' %}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-4 inline-block">Add New Car</a>
+    <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="p-3 text-left">Car</th>
+                <th class="p-3 text-left">Daily Rate</th>
+                <th class="p-3 text-left">Available</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+            <tr>
+                <td class="p-3">{{ car.year }} {{ car.name }} {{ car.model }}</td>
+                <td class="p-3">${{ car.daily_rate }}</td>
+                <td class="p-3">{% if car.is_available %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    <h2 class="text-2xl font-bold mb-4">Active Bookings</h2>
+    <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="p-3 text-left">User</th>
+                <th class="p-3 text-left">Car</th>
+                <th class="p-3 text-left">Start Date</th>
+                <th class="p-3 text-left">End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for booking in bookings %}
+        <tr>
+            <td class="p-3">{{ booking.user.username }}</td>
+            <td class="p-3">{{ booking.car.year }} {{ booking.car.name }} {{ booking.car.model }}</td>
+            <td class="p-3">{{ booking.start_date }}</td>
+            <td class="p-3">{{ booking.end_date }}</td>
+        </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4" class="p-3 text-center">No active bookings available.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

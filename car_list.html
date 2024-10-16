@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-8">Available Cars</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for car in cars %}
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-bold mb-2">{{ car.year }} {{ car.name }} {{ car.model }}</h2>
+        <p class="mb-4">Daily Rate: ${{ car.daily_rate }}</p>
+        <a href="{% url 'book_car' car.id %}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Book Now</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
